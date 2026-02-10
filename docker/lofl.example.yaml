@@ -1,0 +1,35 @@
+# LOFL Docker Configuration
+# This file format matches the ansible vars.example.yaml format
+#
+# Copy this file to lofl.yaml and modify as needed:
+#   cp lofl.example.yaml lofl.yaml
+
+# Victim domains - DNS queries for these domains will be forwarded
+# to the victim_dns server over TCP (through the SOCKS tunnel)
+victim_domains:
+  - victim.local
+
+# DNS server in the victim network
+victim_dns: 10.0.0.1
+
+# Network interface for NAT (optional in local/bridge mode, auto-detected)
+# In gateway mode, set this to your LAN-facing interface
+network_interface: eth0
+
+# SOCKS proxy to tunnel traffic through
+proxy: socks5://127.0.0.1:8080
+
+# Routes to send through the tunnel (CIDR notation)
+routes:
+  - 10.0.0.0/8
+
+# TUN interface name (default: tun0)
+in_interface: tun0
+
+# --- Optional settings below ---
+
+# TUN interface IP address and subnet (default: 198.18.0.1/15)
+# tun_ip: 198.18.0.1/15
+
+# Default DNS server for non-victim domains (default: 8.8.8.8)
+# default_dns: 127.0.0.11
